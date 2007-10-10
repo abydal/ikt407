@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <math.h>
 
 struct point{
 	int x;
@@ -11,29 +12,29 @@ struct square{
 	int fValue;
 	int gValue;
 	int hValue;
-	point pos;
+	point position;
 };
 
 class AStar
 {
 	private:
-		const int straightCost = 10;
-		const int diagonalCost = 14;
+		int straightCost;
+		int diagonalCost;
 
 		vector<square*> openList;
 		vector<square*> closedList;
 		int levelSizeX;
 		int levelSizeY;
 		int *level;
-		void updateLists(square pos);
-		square* FindPoint(point pos);
+		//void updateLists(square pos);
+		square* FindPoint(point* pos);
 
 		//int pos = level[x + y * xsize];
 	
 
 	public:
 
-		Astar(int *level, int sizeX, int sizeY);
+		AStar(int *level, int sizeX, int sizeY);
 		~AStar();
 		void FindPath(point posA, point posB);
 		int CalculateManhattan(point posA, point posB);
