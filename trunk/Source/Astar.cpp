@@ -57,9 +57,9 @@ void AStar::CalculateAdjecentSquares(square* parent)
 			tempPoint.x = x + parent->position.x;
 			tempPoint.y = y + parent->position.y;
 			
-			if(IsWalkable() && !InClosedList(tempPoint))
+			if(IsWalkable(&tempPoint) && !InClosedList(&tempPoint))
 			{
-				square *tempSquare = InOpenList(tempPoint);
+				square *tempSquare = InOpenList(&tempPoint);
 				square newSquare;
 
 				if(temp == NULL)
@@ -90,19 +90,17 @@ void AStar::CalculateAdjecentSquares(square* parent)
 						tempSquare->parent = parent;
 						if((fabs(x) + fabs(y)) == 2)
 						{
-							newSquare.gValue = parent->gValue + diagonalCost;
+							tempSquare.gValue = parent->gValue + diagonalCost;
 						}
 						else
 						{
-							newSquare.gValue = parent->gValue + straightCost;
+							tempSquare.gValue = parent->gValue + straightCost;
 						}
-					}
-
-				}
-
-			}
-
-		}
-	}
-}
+						tempSquare.fValue = tempSquare.hValue + tempSquare.gValue;
+					}//end if
+				}// end else
+			}//end if
+		}//end for
+	}//end for
+}//end CalculateAjecentSquares
 
