@@ -43,5 +43,5 @@ class AStar
 		void FindPath(point posA, point posB);
 		int CalculateManhattan(point posA, point posB);
 		void CalculateAdjecentSquares(square* parent);
-		bool IsWalkable();
+		bool IsWalkable(point *p);
 };
