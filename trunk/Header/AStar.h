@@ -20,14 +20,18 @@ class AStar
 	private:
 		int straightCost;
 		int diagonalCost;
-
-		vector<square*> openList;
-		vector<square*> closedList;
 		int levelSizeX;
 		int levelSizeY;
 		int *level;
+
+		square destination;
+		square start;
+
+		std::vector<square*> openList;
+		std::vector<square*> closedList;
 		//void updateLists(square pos);
-		square* FindPoint(point* pos);
+		square* InOpenList(point* pos);
+		square* InClosedList(point* pos);
 
 		//int pos = level[x + y * xsize];
 	
@@ -38,4 +42,6 @@ class AStar
 		~AStar();
 		void FindPath(point posA, point posB);
 		int CalculateManhattan(point posA, point posB);
+		void CalculateAdjecentSquares(square* parent);
+		bool IsWalkable();
 };
